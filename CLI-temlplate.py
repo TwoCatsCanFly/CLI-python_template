@@ -11,7 +11,9 @@ lang_pack = {'text':{'RU':{'inp':'Ввод: ',
                            'param_value':'Изменить параметр на ',
                            'err_param':'Недопустимый параметр',
                            'available_param':'Возможные параметры',
-                           'about':'Это шаблон для программ на python с консольным интерфейсом)))\n Автор: CCF',
+                           'cli_version':'Версия интерфейса: ',
+                           'app_author':'Автор: ',
+                           'about':'Это шаблон для программ на python с консольным интерфейсом)))',
                            'help':'Здесь хранится справка о программе. Информация о функциях, пунктах меню и порочее.'}},
              'menu':{'RU':{'main':{'C':'Очистить экран',
                                    'S':'Настройки',
@@ -20,6 +22,8 @@ lang_pack = {'text':{'RU':{'inp':'Ввод: ',
                            'back_to_main':{'m':'Вернутся в главное меню'},
                            'example':{1:'something',2:'once again something'}}}}
 app_settings = {'1':{'language':'RU'}}
+app_constants = {'cli_ver':(1.2),
+                 'designed_by':('CatsCanFly')}
 available_settings = {'language':['RU']}
 txt_list = lang_pack['text'][app_settings['1']['language']]
 menu_txt = lang_pack['menu'][app_settings['1']['language']]
@@ -45,6 +49,9 @@ def wrong_input():
     print(txt_list['errinp'])
 def error_function(err):
     print('{}: {}'.format(txt_list['err_func'],err))
+def cli_info():
+    print('{}{}\n{}{}'.format(txt_list['cli_version'],app_constants['cli_ver'],txt_list['app_author'],app_constants['designed_by']))
+    line_p('_',119)
 def clear_screen(inp):
     if inp not in ['C', 'c', 'С', 'с']: return False
     clear()
@@ -85,7 +92,9 @@ def settings(inp):
         continue
 def help_info(inp):
     if inp not in ['H', 'h', 'р', 'Р']: return False
+    line_p('_',119)
     tw_print(txt_list['help'])
+    cli_info()
 def quit_program(inp):
     if inp not in ['Q','q','й','Й']: return False
     print(txt_list['q'])
